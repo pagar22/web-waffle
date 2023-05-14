@@ -2,13 +2,7 @@
   "hosting": {
     "site": "waffle-22",
     "public": "out",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
-  },
-  "rewrites": [
-    {
-      "source": "**",
-      "destination": "/index.html"
-    },
-    { "source": "/clubs", "destination": "/clubs.html" }
-  ]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true
+  }
 }
