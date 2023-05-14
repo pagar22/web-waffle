@@ -4,7 +4,7 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import { theme } from "src/app/theme";
+import { theme } from "src/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 interface FontProps {
