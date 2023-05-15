@@ -18,7 +18,7 @@ export const useClubs = (itemsLimit = 10) => {
     async ({ pageParam }) => {
       let q = query(
         collection(db, "clubs"),
-        orderBy("id", "desc"),
+        orderBy("name", "asc"),
         limit(itemsLimit)
       );
       if (pageParam) {
