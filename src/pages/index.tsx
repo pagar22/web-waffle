@@ -1,6 +1,4 @@
 import { Link, Stack } from "@mui/material";
-import { collection } from "@firebase/firestore";
-import { db } from "firebase.config";
 import { useClubs } from "@/hooks/clubs/useClubs";
 
 export default function Home() {

@@ -1,20 +1,25 @@
+import React from "react";
 import { AppProps } from "next/app";
 import { Inter } from "next/font/google";
-import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import { theme } from "src/theme";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-const inter = Inter({ subsets: ["latin"] });
-interface FontProps {
+// internal
+import { theme } from "src/theme";
+import { FirebaseContextProvider } from "@/services/firebase.context";
+
+export interface ContextProps {
   children: React.ReactNode;
 }
 
+const inter = Inter({ subsets: ["latin"] });
 const cache = createCache({ key: "css", prepend: true });
+const queryClient = new QueryClient();
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const FontProvider = ({ children }: FontProps) => {
+  const FontProvider = ({ children }: ContextProps) => {
     return <main className={inter.className}>{children}</main>;
   };
 
@@ -22,7 +27,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <FontProvider>
-          <Component {...pageProps} />
+          <QueryClientProvider client={queryClient}>
+            <FirebaseContextProvider>
+              <Component {...pageProps} />
+            </FirebaseContextProvider>
+          </QueryClientProvider>
         </FontProvider>
       </ThemeProvider>
     </CacheProvider>
